@@ -84,7 +84,18 @@ const loginUser = async (request, response) => {
   const user = await User.findOne({ email });
 
   if (user && (await bcrypt.compare(password, user.password))) {
-      return response.status(200).json({ message: "Login successfully" });
+    const token = generateToken(user._id)
+
+    response.cookie("jwt", token, {
+      httpOnly : true,
+      sameSite : "strict",
+      maxAge : 30*24*60*60*1000,
+    })
+
+      return response.status(200).json({ message: "Login successfully", 
+        token,
+        user
+      });
   } else {
       response.status(400);
       throw new Error("Username or password is incorrect");
@@ -107,7 +118,18 @@ const loginAdmin = async (request, response) => {
 
   // Check if admin exists and password is correct
   if (user && (await bcrypt.compare(password, user.password))) {
-    return response.status(200).json({ message: "Admin login successful" });
+    const token = generateToken(user._id)
+
+    response.cookie("jwt", token, {
+      httpOnly : true,
+      sameSite : "strict",
+      maxAge : 30*24*60*60*1000,
+    })
+
+    return response.status(200).json({ message: "Admin login successful", 
+      token,
+      user
+    });
   } else {
     response.status(400);
     throw new Error("Admin email or password is incorrect");
@@ -148,6 +170,7 @@ const forgotPassword = async (request, response) => {
   response.status(200).json({success : true, data : "Reset link sent to email...."})
 
 }
+
 
 
 // resetPassword function

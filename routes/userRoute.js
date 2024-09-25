@@ -2,6 +2,7 @@
 // Users endpoins will be defined here 
 const express = require("express")
 const { registerUser, registerAdmin, loginUser, loginAdmin, forgotPassword, resetPassword, getAllUsers, getSingleUser, updateUserProfile, updateAdminProfile } = require("../controller/userController")
+const { protect, admin } = require("../middleware/authMiddleware")
 
 const router = express.Router()
 
@@ -20,7 +21,8 @@ router.post("/forgotPassword", forgotPassword)
 
 router.put("/reset-password/:resetToken", resetPassword)
 
-router.get("/get-all-users", getAllUsers)
+// To protect a route write protect beside "comma," and make sure it is imported
+router.get("/get-all-users",protect,admin, getAllUsers)
 
 router.get('/:id', getSingleUser)
 
