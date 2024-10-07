@@ -21,6 +21,11 @@ app.use(express.json())
 // importing user routes
 // const userRoute = require("./routes/userRoute")
 
+
+// For Vesel
+app.use("/", (request, response) => {
+  response.send('server is working')
+})
 // For userRoute
 app.use("/api/users", require("./routes/userRoute"))
 
