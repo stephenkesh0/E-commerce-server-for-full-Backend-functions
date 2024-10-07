@@ -6,31 +6,30 @@ const { protect, admin } = require("../middleware/authMiddleware")
 
 const router = express.Router()
 
+// User routes
 router.post("/register", registerUser)
-
-
-router.post("/register/admin", registerAdmin)
 
 router.post("/login", loginUser)
 
-router.post("/login/admin", loginAdmin)
-
-
 router.post("/forgotPassword", forgotPassword)
 
-
 router.put("/reset-password/:resetToken", resetPassword)
-
-// To protect a route write protect beside "comma," and make sure it is imported
-router.get("/get-all-users",protect,admin, getAllUsers)
 
 router.get('/:id', getSingleUser)
 
 router.put('/:id', updateUserProfile)
 
+
+
+// Admin routes
+router.post("/register/admin", registerAdmin)
+
+router.post("/login/admin", loginAdmin)
+
 router.put('/admin/:id', updateAdminProfile);
 
-
+// To protect a route write "protect" beside "comma ," and make sure it is imported
+router.get("/",protect,admin, getAllUsers)
 
 
 

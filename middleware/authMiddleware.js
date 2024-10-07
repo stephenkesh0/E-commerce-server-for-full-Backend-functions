@@ -2,7 +2,7 @@ const User = require("../models/userModel")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
-// Middleware to check for authentication (General)
+// Middleware to check for authentication (Generally both Admin & User)
 const protect = async (request, response, next) => {
   let token;
   if (request.headers.authorization && request.headers.authorization.startsWith("Bearer")) {

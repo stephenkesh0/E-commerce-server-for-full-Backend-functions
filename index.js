@@ -21,8 +21,17 @@ app.use(express.json())
 // importing user routes
 // const userRoute = require("./routes/userRoute")
 
-// using the user route
-app.use("/api/user", require("./routes/userRoute"))
+// For userRoute
+app.use("/api/users", require("./routes/userRoute"))
+
+// For productRoute
+app.use('/api/products', require("./routes/productRoute"))
+
+// For categoryRoute
+app.use("/api/categorys", require("./routes/categoryRoute"))
+
+// For orderRoute
+app.use("/api/orders", require("./routes/orderRoute"))
 
 // testing route
 app.get("/api", (request, response) => {

@@ -1,4 +1,3 @@
-const { request, response } = require("express")
 const User = require("../models/userModel")
 const generateToken = require("../utils/generateToken")
 const bcrypt = require("bcrypt")
@@ -230,7 +229,6 @@ const getAllUsers = async (request, response) => {
     response.status(500).json({ error: "Server error, please try again" });
   }
 };
-
 
 // getSingleUser function
 const getSingleUser = async (request, response) => {

@@ -25,9 +25,9 @@ const userSchema = mongoose.Schema({
   },
 
   isAdmin : {
-    default : false,
     type : Boolean,
-    required : true
+    required : true,
+    default : false
   },
 
  // for reseting password shenanigans 
