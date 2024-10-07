@@ -22,7 +22,7 @@ app.use(express.json())
 // const userRoute = require("./routes/userRoute")
 
 
-// For Versel
+// For Vercel
 app.use("/", (request, response) => {
   response.send('server is working')
 })
